@@ -1,26 +1,30 @@
+// import { UserContext } from '../context/userContext';
+// import { useContext } from 'react';
+// import { Redirect } from 'react-router-dom';
+import { signUpUser } from '../utils/fetch-utils';
+import Header from './Header.js';
+
 export default function SignUpForm() {
-  const handleSignUp = (e) => {
+  // const { user } = useContext(UserContext);
+
+  // if (user) return <Redirect to="/" />;
+
+  const handleSignUp = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    // console.log('formData', formData);
+
     const newUser = {
       firstName: formData.get('firstName'),
       lastName: formData.get('lastName'),
       email: formData.get('email'),
       password: formData.get('password'),
-      // firstName: e.target.firstName,
-      // lastName: e.target.lastName,
-      // email: e.target.email,
-      // password: e.target.password,
     };
-
-    console.log('newUser', newUser);
-    // get formData
-    // send to userContext for processing?
+    await signUpUser(newUser);
   };
 
   return (
     <>
+      <Header />
       <h1>Sign-Up</h1>
       <form onSubmit={handleSignUp}>
         <label>
