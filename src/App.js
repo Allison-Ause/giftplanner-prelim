@@ -1,6 +1,6 @@
 import './App.css';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import Auth from './components/AuthPage.js';
+import AuthPage from './components/AuthPage.js';
 import Gifts from './components/Gifts';
 import { useContext } from 'react';
 import { ThemeContext } from './context/themeContext';
@@ -11,7 +11,7 @@ function App() {
   return (
     <div className={theme}>
       <Switch>
-        <Route path="/auth/:type" component={Auth} />
+        <Route path="/auth/:type" component={AuthPage} />
         <Route path="/gifts" component={Gifts} />
         <Route path="*">
           <Redirect to="/auth/sign-up" />

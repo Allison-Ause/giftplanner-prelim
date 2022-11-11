@@ -1,13 +1,18 @@
 // import { UserContext } from '../context/userContext';
 // import { useContext } from 'react';
 // import { Redirect } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { ThemeContext } from '../context/themeContext';
 import { signUpUser } from '../utils/fetch-utils';
 import Header from './Header.js';
+import Snow from './Snow/Snow.js';
 
 export default function SignUpForm() {
   // const { user } = useContext(UserContext);
 
   // if (user) return <Redirect to="/" />;
+  const { theme } = useContext(ThemeContext);
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -25,6 +30,7 @@ export default function SignUpForm() {
   return (
     <>
       <Header />
+      {theme === 'festive' && <Snow />}
       <h1>Sign-Up</h1>
       <form onSubmit={handleSignUp}>
         <label>
@@ -45,6 +51,7 @@ export default function SignUpForm() {
         </label>
         <button type="submit">Sign Up</button>
       </form>
+      <Link to="/auth/sign-in">Already have an account? Sign In.</Link>
     </>
   );
 }

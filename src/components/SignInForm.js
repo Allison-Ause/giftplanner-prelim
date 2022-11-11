@@ -1,7 +1,13 @@
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { ThemeContext } from '../context/themeContext';
 import { signInUser } from '../utils/fetch-utils';
 import Header from './Header.js';
+import Snow from './Snow/Snow.js';
 
 export default function SignInForm() {
+  const { theme } = useContext(ThemeContext);
+
   const handleSignIn = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -15,6 +21,7 @@ export default function SignInForm() {
   return (
     <>
       <Header />
+      {theme === 'festive' && <Snow />}
       <h1>Sign-In</h1>
       <form onSubmit={handleSignIn}>
         <label>
@@ -27,6 +34,7 @@ export default function SignInForm() {
         </label>
         <button type="submit">Sign In</button>
       </form>
+      <Link to="/auth/sign-up">Need to create an account? Sign Up.</Link>
     </>
   );
 }
